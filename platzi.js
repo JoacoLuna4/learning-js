@@ -48,12 +48,6 @@ var flechas = {
 let send = document.getElementById("submit");
 send.addEventListener("click", dibujar);
 
-
-
-// var cantidad_pollos = document.formu.pollitos.value;
-// var cantidad_pollos = document.getElementById("pollos-cantidad");
-// console.log("La cantidad de pollos es: " + cantidad_pollos.value);
-
 // ------------------------------------------------------ CARGA DE IMAGENES EN ORDEN
 
 fondo.objeto = new Image();                         // Se declara new Image aquí ya que en el objeto literal causa error de synth
@@ -106,10 +100,11 @@ function dibujar(){
     let vacasJs = document.getElementById("vacas-cantidad");
     let cerdosJs = document.getElementById("cerdos-cantidad");
     let pollosJs = document.getElementById("pollos-cantidad");
+    let lobosJs = document.getElementById("lobos-cantidad");
     let vacas = vacasJs.value; 
-    let cerdo = cerdosJs.value; 
+    let cerdos = cerdosJs.value; 
     let pollos = pollosJs.value; 
-    console.log(cerdo.carga);
+    let lobos = lobosJs.value; 
 
                                                  // Llama a la funcion aleatorio y le da el rango, permite darle valores random de X e Y para que aparezcan en distintos lugares
     if(fondo.carga == true){                     // Pregunta si el valor de "carga" esta en true para recien ahi dibujar la imagen en "lienzo" que es el contexto
@@ -123,13 +118,12 @@ function dibujar(){
         }
     }
     if(cerdo.carga){                                  //Para evitar que se encimen tanto las imagenes puedo calcular que teniendo un ancho de 500px
-        for(i=0; i<3; i++){                           // y un ancho de imagenes de 80px 500/80= 6.25 , es decir que 6*80= 480
+        for(i=0; i<cerdos; i++){                           // y un ancho de imagenes de 80px 500/80= 6.25 , es decir que 6*80= 480
             var x = aleatorio(0,5);                       //es decir, que si yo genero un numero aleatorio entre 0 - 6 
             var y = aleatorio(0,5);                       // (se le hace de 0 - 5 para que no se salga de los limites)
             var x = x *80;                                //y lo multiplico *80 me va a dar mi límite.
             var y = y *80;
             lienzo.drawImage(cerdo.objeto, x, y);
-            console.log("hola")
         }
     }
     if(pollo.carga){
@@ -141,6 +135,16 @@ function dibujar(){
             lienzo.drawImage(pollo.objeto, x, y);
         }    
     }
+    if(lobo.carga){
+        for(i=0; i<lobos; i++){
+            var x = aleatorio(0,5);                       
+            var y = aleatorio(0,5);                       
+            var x = x *80;                                
+            var y = y *80;
+            lienzo.drawImage(lobo.objeto, x, y);
+        }    
+    }
+    
 }
 
 //FUNCION QUE MUEVE TECLAS
