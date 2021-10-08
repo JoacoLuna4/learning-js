@@ -3,28 +3,27 @@
 
 var vp = document.getElementById("villaplatzi");
 var lienzo = vp.getContext("2d");
-var cantidad_vacas= aleatorio(1,10); 
 var movimiento = 10;                                // MOVIMIENTO DEL LOBO
 
 // Variables de imagenes
 var fondo ={                                        //OBJETO LITERAL (Objeto que contiene varios objetos)
-    url: "tile.webp",
+    url: "assets/tile.webp",
     carga: false
 }
 var vaca ={                                         //OBJETO LITERAL (Objeto que contiene varios objetos)
-    url: "vaca.png",
+    url: "assets/vaca.png",
     carga: false                                    //"Carga" inicia en False - 
 }
 var cerdo={
-    url: "cerdo.webp",
+    url: "assets/cerdo.webp",
     carga: false
 }
 var pollo={
-    url: "pollo.webp",
+    url: "assets/pollo.webp",
     carga: false
 }
 var lobo={
-    url: "lobo.png",
+    url: "assets/lobo.png",
     carga: false
 }
 
@@ -37,18 +36,21 @@ var flechas = {
 };
 
 
-document.addEventListener("keydown", oprimirTecla); // Escuchador de teclado en el documento, cuando haya una "keydown"
-                                                    // ejecuta la funcion oprimirTecla()
+//document.addEventListener("keydown", oprimirTecla); // Escuchador de teclado en el documento, cuando haya una "keydown"
+// ejecuta la funcion oprimirTecla()
 
 
 // ------------------------------------------------------ INTENTO DE FORMULARIO
 
 
 // var cantidad_vacas= document.getElementById("vacas-cantidad");
-var cantidad_lobos = document.getElementById("lobos-cantidad");
+
+let send = document.getElementById("submit");
+send.addEventListener("click", dibujar);
+
+
+
 // var cantidad_pollos = document.formu.pollitos.value;
-
-
 // var cantidad_pollos = document.getElementById("pollos-cantidad");
 // console.log("La cantidad de pollos es: " + cantidad_pollos.value);
 
@@ -64,7 +66,7 @@ vaca.objeto.addEventListener("load", cargarVacas);
 
 cerdo.objeto = new Image();                         // Lo mismo que anteriormente pero con los cerdos
 cerdo.objeto.src = cerdo.url;
-cerdo.objeto.addEventListener ("load", cargarCerdos);
+cerdo.objeto.addEventListener("load", cargarCerdos);
 
 pollo.objeto = new Image();                         // Lo mismo que anteriormente pero con los pollos
 pollo.objeto.src = pollo.url;
@@ -79,12 +81,12 @@ function cargarFondo(){
     fondo.carga = true;                             // Cargar fondo pone en true a la propiedad "carga" del objeto fondo
     dibujar();                                      // Llama a la funcion dibujar
 }
-function cargarVacas(){
-    vaca.carga = true;
-    dibujar();
-}
 function cargarCerdos(){
     cerdo.carga = true;
+    dibujar();
+}
+function cargarVacas(){
+    vaca.carga = true;
     dibujar();
 }
 function cargarPollo(){
@@ -95,31 +97,43 @@ function cargarLobo(){
     lobo.carga = true;
     dibujar();
 }
+console.log(cerdo);
 
 
 
-function dibujar(){                              // Llama a la funcion aleatorio y le da el rango, permite darle valores random de X e Y para que aparezcan en distintos lugares
+
+function dibujar(){   
+    let vacasJs = document.getElementById("vacas-cantidad");
+    let cerdosJs = document.getElementById("cerdos-cantidad");
+    let pollosJs = document.getElementById("pollos-cantidad");
+    let vacas = vacasJs.value; 
+    let cerdo = cerdosJs.value; 
+    let pollos = pollosJs.value; 
+    console.log(cerdo.carga);
+
+                                                 // Llama a la funcion aleatorio y le da el rango, permite darle valores random de X e Y para que aparezcan en distintos lugares
     if(fondo.carga == true){                     // Pregunta si el valor de "carga" esta en true para recien ahi dibujar la imagen en "lienzo" que es el contexto
         lienzo.drawImage(fondo.objeto, 0, 0);    // "2 d" de la variable vp del canvas con id "villaplatzi" del index.html
     }
     if(vaca.carga){
-        for(i=0; i< cantidad_vacas; i++){
+        for(i=0; i < vacas; i++){
             var x = aleatorio(0, 420);                   // El rango va entre 0 y 420 ya que el canvas tiene 500px y la vaca tiene 80px (el resultado de 500-80)
             var y = aleatorio(0, 420);
             lienzo.drawImage(vaca.objeto, x, y);
         }
     }
     if(cerdo.carga){                                  //Para evitar que se encimen tanto las imagenes puedo calcular que teniendo un ancho de 500px
-        for(i=0; i<5; i++){                           // y un ancho de imagenes de 80px 500/80= 6.25 , es decir que 6*80= 480
+        for(i=0; i<3; i++){                           // y un ancho de imagenes de 80px 500/80= 6.25 , es decir que 6*80= 480
             var x = aleatorio(0,5);                       //es decir, que si yo genero un numero aleatorio entre 0 - 6 
             var y = aleatorio(0,5);                       // (se le hace de 0 - 5 para que no se salga de los limites)
             var x = x *80;                                //y lo multiplico *80 me va a dar mi límite.
             var y = y *80;
             lienzo.drawImage(cerdo.objeto, x, y);
+            console.log("hola")
         }
     }
     if(pollo.carga){
-        for(i=0; i<15; i++){
+        for(i=0; i<pollos; i++){
             var x = aleatorio(0,5);                       
             var y = aleatorio(0,5);                       
             var x = x *80;                                
@@ -151,16 +165,13 @@ function oprimirTecla(evento){
         default:
         }
     }
+    /////// ETAPA DE MOVIMIENTO DE LOBO CON FLECHAS /////////
 var xlobo = 150;
 var ylobo = 150;
 function moverLobo(){                  
         lienzo.drawImage(lobo.objeto, xlobo, ylobo);   
 }
 
-function handleSubmit(){
-    let res = document.forms.formu.pollos-cantidad;
-    console.log(res)
-}
 function aleatorio(min, maxi){
     var result;
     result = Math.floor(Math.random() * (maxi - min + 1)) + min;
