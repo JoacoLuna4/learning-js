@@ -36,17 +36,8 @@ var flechas = {
 };
 
 
-//document.addEventListener("keydown", oprimirTecla); // Escuchador de teclado en el documento, cuando haya una "keydown"
-// ejecuta la funcion oprimirTecla()
-
-
-// ------------------------------------------------------ INTENTO DE FORMULARIO
-
-
-// var cantidad_vacas= document.getElementById("vacas-cantidad");
-
-let send = document.getElementById("submit");
-send.addEventListener("click", dibujar);
+document.addEventListener("keydown", oprimirTecla); // Escuchador de teclado en el documento, cuando haya una "keydown"
+                                                    // ejecuta la funcion oprimirTecla()
 
 // ------------------------------------------------------ CARGA DE IMAGENES EN ORDEN
 
@@ -95,7 +86,8 @@ console.log(cerdo);
 
 
 
-
+let send = document.getElementById("submit");   //Traemos el botón al js
+send.addEventListener("click", dibujar);        //Ponemos un escuchador del botón, para que dispare la funcion dibujar
 function dibujar(){   
     let vacasJs = document.getElementById("vacas-cantidad");
     let cerdosJs = document.getElementById("cerdos-cantidad");
@@ -135,16 +127,7 @@ function dibujar(){
             lienzo.drawImage(pollo.objeto, x, y);
         }    
     }
-    if(lobo.carga){
-        for(i=0; i<lobos; i++){
-            var x = aleatorio(0,5);                       
-            var y = aleatorio(0,5);                       
-            var x = x *80;                                
-            var y = y *80;
-            lienzo.drawImage(lobo.objeto, x, y);
-        }    
-    }
-    
+   
 }
 
 //FUNCION QUE MUEVE TECLAS

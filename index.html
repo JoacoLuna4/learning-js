@@ -8,17 +8,20 @@
     <title>Campito</title>
 </head>
 <body>
-<form name="formu">
-    <label for="Cantidad-Vacas"> Elija cantidad de Vacas: <input type="number" id="vacas-cantidad"> </label> <br>
-    <label for="Cantidad-Pollos"> Elija cantidad de Pollos: <input type="number" id="pollos-cantidad" name="pollitos" > </label><br>
+
+    <h1 class="center">  Invita a tus animales   </h1>
+<form name="formu" class="center">
+    <label for="Cantidad-Vacas" > Elija cantidad de Vacas: <input type="number" id="vacas-cantidad" > </label> <br>
+    <label for="Cantidad-Pollos"> Elija cantidad de Pollos: <input type="number" id="pollos-cantidad" name="pollitos"> </label><br>
     <label for="Cantidad-Cerdos"> Elija cantidad de Cerdos: <input type="number" id="cerdos-cantidad" > </label><br>
     <label for="Cantidad-Lobos"> Elija cantidad de Lobos: <input type="number" id="lobos-cantidad"> </label><br>
-    <button id="submit" type="button" onclick="dibujar"> Enviar locura </button>
+    <button id="submit" type="button" onclick="dibujar" class="btn"> Veamos juntos! </button>
 
 </form>    
-    <canvas width="500" height="500" id="villaplatzi">
-
+<div class="center"> 
+    <canvas width="500" height="500" id="villaplatzi" >        
     </canvas>
+</div> 
     <script src="platzi.js"></script>
 </body>
 </html>
