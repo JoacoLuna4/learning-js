@@ -22,10 +22,10 @@ var pollo={
     url: "assets/pollo.webp",
     carga: false
 }
-var lobo={
-    url: "assets/lobo.png",
-    carga: false
-}
+// var lobo={
+//     url: "assets/lobo.png",
+//     carga: false
+// }
 
 // VARIABLE QUE ALMACENA VALOR DE FLECHAS
 var flechas = {                                     
@@ -57,9 +57,9 @@ pollo.objeto = new Image();                         // Lo mismo que anteriorment
 pollo.objeto.src = pollo.url;
 pollo.objeto.addEventListener ("load", cargarPollo);
 
-lobo.objeto = new Image();                         // Lo mismo que anteriormente pero con los lobos
-lobo.objeto.src = lobo.url;
-lobo.objeto.addEventListener ("load", cargarLobo);
+// lobo.objeto = new Image();                         // Lo mismo que anteriormente pero con los lobos
+// lobo.objeto.src = lobo.url;
+// lobo.objeto.addEventListener ("load", cargarLobo);
 
 // Funciones que corroboran que la carga se efectue
 function cargarFondo(){                           
@@ -78,10 +78,10 @@ function cargarPollo(){
     pollo.carga = true;
     dibujar();
 }
-function cargarLobo(){
-    lobo.carga = true;
-    dibujar();
-}
+// function cargarLobo(){
+//     lobo.carga = true;
+//     dibujar();
+// }
 console.log(cerdo);
 
 
@@ -96,7 +96,7 @@ function dibujar(){
     let vacas = vacasJs.value; 
     let cerdos = cerdosJs.value; 
     let pollos = pollosJs.value; 
-    let lobos = lobosJs.value; 
+    // let lobos = lobosJs.value; 
 
                                                  // Llama a la funcion aleatorio y le da el rango, permite darle valores random de X e Y para que aparezcan en distintos lugares
     if(fondo.carga == true){                     // Pregunta si el valor de "carga" esta en true para recien ahi dibujar la imagen en "lienzo" que es el contexto
